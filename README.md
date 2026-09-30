@@ -19,6 +19,10 @@ The libraries target .NET 8 and .NET 10. The .NET Tool and portable archive requ
 
 The 3.0 line is currently in prerelease. See the [stable release checklist](docs/release-process.md#30-stable-checklist) and [known limitations](docs/client-library.md#known-limitations). Existing applications should read [Migrating to v3](docs/client-library.md#migrating-to-v3).
 
+## Recent updates
+
+- Added the `list_leads` MCP tool and matching `ITcClient.Leads` client API — leads are returned most-recent-activity-first. See [MCP Server: Available tools](docs/mcp-server.md#available-tools).
+
 ## Documentation
 
 - **[Client Library](docs/client-library.md)** — Quick start, DI setup, API reference, filters, paginated sources
@@ -84,7 +88,7 @@ tenantcloud install claude-code
 
 To make the MCP client resolve the latest Tool version whenever it starts, add `--dnx` to either command.
 
-Restart the client, then ask: *"List my TenantCloud properties"* or *"Who are my tenants?"*
+Restart the client, then ask: *"List my TenantCloud properties"*, *"Who are my tenants?"*, or *"Show my latest leads"*.
 
 Other MCP clients, and portable installations, use [manual stdio configuration](docs/mcp-server.md#manual-configuration). The server command is `tenantcloud mcp serve`; invoking `tenantcloud` without arguments starts the REPL instead. Version 3 renames the public command from `tc-mcp` to `tenantcloud`; see the [migration notes](docs/mcp-server.md#v3-command-migration).
 

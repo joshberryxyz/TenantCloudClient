@@ -226,6 +226,7 @@ install ...` to replace an automatically generated launcher.
 | `list_units` | Rental units | `propertyId`, `occupancy` |
 | `list_transactions` | Financial transactions | `tenantId`, `propertyId`, `unitId`, `status`, `category` |
 | `list_leases` | Lease agreements | `propertyId`, `unitId`, `status` |
+| `list_leads` | Prospective tenants and other inquiries, most recent activity first | — |
 
 ### Pagination and migration from the previous MCP contract
 
@@ -277,3 +278,4 @@ on a later list page; an entity resource cannot recover a cache miss by itself.
 - "Show me overdue transactions"
 - "List active leases for property 12345"
 - "What is the total rent balance?"
+- "Show my latest leads"

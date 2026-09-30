@@ -22,6 +22,8 @@ internal sealed class TenantCloudModule(ITcClient client, EntityCache cache) : I
 				.WithDescription("List transactions by tenant, property, unit, status, or category.").ReadOnly();
 			list.Map("leases", new LeaseTools(client, cache).ListLeases)
 				.WithDescription("List leases by property, unit, or status.").ReadOnly();
+			list.Map("leads", new LeadTools(client).ListLeads)
+				.WithDescription("List leads, most recent activity first.").ReadOnly();
 		});
 	}
 }

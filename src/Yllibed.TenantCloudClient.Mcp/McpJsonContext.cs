@@ -12,6 +12,7 @@ namespace Yllibed.TenantCloudClient.Mcp;
 [JsonSerializable(typeof(TcUnit))]
 [JsonSerializable(typeof(TcTransaction))]
 [JsonSerializable(typeof(TcLease))]
+[JsonSerializable(typeof(TcLead))]
 internal partial class McpJsonContext : JsonSerializerContext
 {
 }

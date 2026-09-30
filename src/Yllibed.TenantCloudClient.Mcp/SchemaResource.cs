@@ -115,6 +115,18 @@ internal sealed class SchemaResource
 		- `lease_status` (TcLeaseStatus) — Active, Archived, Ended, Expired, Future, Pending, etc.
 		- `isArchived` (bool) — Whether the lease is archived
 
+		### Lead
+		A prospective tenant or other inquiry, sorted by most recent activity.
+		- `id` (long) — Lead ID
+		- `name` (string?) — Lead name (may be null)
+		- `email` (string?) — Email address
+		- `phone` (string?) — Phone number
+		- `category` (string?) — Lead category, e.g. `tenant`
+		- `type` (string?) — Lead temperature, e.g. `hot`
+		- `source` (string?) — Origin, e.g. `zillow`, `rental_application`, `rent_path`, `apartments`, `requested_tour`
+		- `status` (string?) — Lead status, e.g. `new`, `closed`
+		- `last_action_at` (DateTimeOffset?) — Last activity timestamp
+
 		## Tool Filters — CRITICAL
 
 		You MUST use server-side filters whenever the user's question targets a specific
@@ -148,6 +160,10 @@ internal sealed class SchemaResource
 		- `propertyId` (long?) — Filter by property ID
 		- `unitId` (long?) — Filter by unit ID
 		- `status` (string?) — Filter by status: `active`
+
+		### list_leads
+		No business filters; use the common paging parameters. Results are sorted by
+		`last_action_at`, newest first.
 
 		## ID Resolution — IMPORTANT
 
@@ -192,6 +208,7 @@ internal sealed class SchemaResource
 		- "Show overdue rent for unit 3B at [property]" → resolve property → resolve unit → `list_transactions` with `unitId` + `status=overdue` + `category=income`
 		- "What leases are on unit [name]?" → resolve unit → `list_leases` with `unitId`
 		- "Show all expenses for [property]" → resolve property → `list_transactions` with `propertyId` + `category=expense`
+		- "Show my latest leads" → `list_leads`
 		- "Who am I logged in as?" → `get_user_info`
 		""";
 }

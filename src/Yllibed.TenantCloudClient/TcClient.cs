@@ -59,6 +59,10 @@ public class TcClient : IDisposable, ITcClient
 			(ct, page, extra) => GetJsonApiPage(ct, "leases", page, extra,
 				TcJsonSerializerContext.Default.TcJsonApiResponseTcLease), "");
 
+		Leads = new PaginatedSource<TcLead>(
+			(ct, page, extra) => GetJsonApiPage(ct, "leads", page, extra,
+				TcJsonSerializerContext.Default.TcJsonApiResponseTcLead), "&sort=-last_action_at");
+
 		var httpHandler = handler ?? new HttpClientHandler()
 		{
 			UseCookies = false,
@@ -94,6 +98,8 @@ public class TcClient : IDisposable, ITcClient
 	public IPaginatedSource<TcTransaction> Transactions { get; }
 
 	public IPaginatedSource<TcLease> Leases { get; }
+
+	public IPaginatedSource<TcLead> Leads { get; }
 
 	private async Task<(ReadOnlyMemory<T>, long, long)> GetJsonApiPage<T>(
 		CancellationToken ct, string endpoint, long pageNo, string extraUrl,

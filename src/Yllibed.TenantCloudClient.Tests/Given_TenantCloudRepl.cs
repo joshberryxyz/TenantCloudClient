@@ -132,7 +132,7 @@ public sealed class Given_TenantCloudRepl
 		var app = TenantCloudApp.Create(s => s.AddSingleton<ITcClient>(new FakeClient()));
 		var options = TenantCloudApp.BuildMcpOptions(app.Services.GetRequiredService<ICoreReplApp>(), app.Services);
 		options.ToolCollection!.Select(t => t.ProtocolTool.Name).Should().BeEquivalentTo(
-			"get_user_info", "list_contacts", "list_properties", "list_units", "list_transactions", "list_leases");
+			"get_user_info", "list_contacts", "list_properties", "list_units", "list_transactions", "list_leases", "list_leads");
 		foreach (var tool in options.ToolCollection!.Where(t => t.ProtocolTool.Name.StartsWith("list_", StringComparison.Ordinal)))
 		{
 			var properties = tool.ProtocolTool.InputSchema.GetProperty("properties");
@@ -215,6 +215,7 @@ public sealed class Given_TenantCloudRepl
 		public IPaginatedSource<TcUnit> Units { get; } = new FakePages<TcUnit>([]);
 		public IPaginatedSource<TcTransaction> Transactions { get; } = new FakePages<TcTransaction>([]);
 		public IPaginatedSource<TcLease> Leases { get; } = new FakePages<TcLease>([]);
+		public IPaginatedSource<TcLead> Leads { get; } = new FakePages<TcLead>([]);
 		public Task<TcUserInfo?> GetUserInfo(CancellationToken ct) => Task.FromResult<TcUserInfo?>(new() { Id = 1 });
 	}
 

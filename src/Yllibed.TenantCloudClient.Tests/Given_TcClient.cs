@@ -140,6 +140,21 @@ public class Given_TcClient : TestBase
 	}
 
 	[TestMethod]
+	public async Task When_GetLeads()
+	{
+		var client = new TcClient(TokenProvider);
+		var sut = client.Leads;
+
+		var (entries, _, total) = await sut.GetPage(CancellationToken.None);
+		var leads = entries.ToArray();
+
+		leads.Should().NotBeEmpty();
+		total.Should().BeGreaterThanOrEqualTo(leads.Length);
+		leads.Select(x => x.Id).Should().OnlyHaveUniqueItems();
+		leads.Select(x => x.LastActionAt).Should().BeInDescendingOrder();
+	}
+
+	[TestMethod]
 	public async Task When_GetActiveLeases()
 	{
 		var client = new TcClient(TokenProvider);

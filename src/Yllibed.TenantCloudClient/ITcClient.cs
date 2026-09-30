@@ -19,4 +19,6 @@ public interface ITcClient
 	IPaginatedSource<TcTransaction> Transactions { get; }
 
 	IPaginatedSource<TcLease> Leases { get; }
+
+	IPaginatedSource<TcLead> Leads { get; }
 }
